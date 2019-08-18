@@ -26,13 +26,11 @@ open class BaseActivity : AppCompatActivity(), MvpView {
     }
 
     override fun showMessage(message: String) {
-        if (message != null)
-            displayMessage(message)
+        displayMessage(message)
     }
 
     override fun showError(message: String) {
-        if (message != null)
-            displayError(message)
+        displayError(message)
     }
 
 }

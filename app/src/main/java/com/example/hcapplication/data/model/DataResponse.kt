@@ -6,5 +6,5 @@ import com.google.gson.annotations.SerializedName
 class DataResponse {
     @SerializedName("data")
     @Expose
-    var data: List<Datum>? = null
+    var data: ArrayList<Datum>? =  null
 }

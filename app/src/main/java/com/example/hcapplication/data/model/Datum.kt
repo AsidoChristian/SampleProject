@@ -9,7 +9,7 @@ class Datum {
     var section: String? = null
     @SerializedName("items")
     @Expose
-    var items: List<Item>? = null
+    var items: ArrayList<Item>? = null
     @SerializedName("section_title")
     @Expose
     var sectionTitle: String? = null
