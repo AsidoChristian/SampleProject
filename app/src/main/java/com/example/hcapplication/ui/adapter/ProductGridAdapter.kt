@@ -1,6 +1,8 @@
 package com.example.hcapplication.ui.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,6 +44,10 @@ class ProductGridAdapter : BaseAdapter {
             .placeholder(R.drawable.ic_launcher_background)
             .into(productView.imageView_gridView_icon)
         productView.textView_gridView_name.text = product.productName
+        productView.setOnClickListener {
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse(product.link.toString()))
+            context!!.startActivity(i)
+        }
 
         return productView
     }
