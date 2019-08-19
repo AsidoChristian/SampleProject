@@ -33,18 +33,15 @@ class ProductGridAdapter : BaseAdapter {
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        println("masuk gann ${productList.size}")
         val product = this.productList[position]
-
         var inflator = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         var productView = inflator.inflate(R.layout.products_item, null)
         Glide.with(context!!)
             .load(product.productImage)
             .centerCrop()
             .placeholder(R.drawable.ic_launcher_background)
-            .into(productView.imgProduct)
-        productView.tvName.text = product.productName
-
+            .into(productView.imageView_gridView_icon)
+        productView.textView_gridView_name.text = product.productName
 
         return productView
     }

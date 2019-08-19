@@ -1,5 +1,6 @@
 package com.example.hcapplication.ui
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +18,7 @@ class MainActivity : BaseActivity(),MainMvpView {
 
     @Inject
     lateinit var presenter: MainMvpPresenter<MainMvpView>
+    lateinit var progressDialog: ProgressDialog
     private var gridAdapter: ProductGridAdapter? = null
     private var recAdapter: ArticleAdapter? = null
     private var recyclerView: RecyclerView? = null
@@ -27,21 +29,25 @@ class MainActivity : BaseActivity(),MainMvpView {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        recyclerView =findViewById(R.id.rvMain)
+        recyclerView =findViewById(R.id.recyclerView_main_article)
+        progressDialog = ProgressDialog(this@MainActivity)
         presenter.onAttach(this)
+        progressDialog.setTitle("ProgressDialog")
+        progressDialog.setMessage("Loading...")
+        progressDialog.show()
         presenter.doGetData()
     }
 
     override fun doGetData(data: DataResponse) {
         modelProduct= data.data?.get(0)?.items!!
         gridAdapter = ProductGridAdapter(this, modelProduct)
-        gvProducts.adapter = gridAdapter
+        gridView_main_product.adapter = gridAdapter
 
-        modelArticle= data.data!!.get(1).items
+        textView_main_sectionTitle.text= data.data!![1].sectionTitle.toString()
+        modelArticle= data.data!![1].items
         recyclerView?.layoutManager = LinearLayoutManager(this)
         recAdapter = ArticleAdapter(recyclerView!!,this,modelArticle!!)
         recyclerView?.adapter = recAdapter
-
-
+        progressDialog.dismiss()
     }
 }

@@ -34,8 +34,8 @@ class ArticleAdapter(
     }
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        internal var title: TextView = itemView.findViewById(R.id.txtTitle)
-        internal var cover: ImageView = itemView.findViewById(R.id.imageView_main_coverarticle)
+        internal var title: TextView = itemView.findViewById(R.id.textView_recyclerView_title)
+        internal var cover: ImageView = itemView.findViewById(R.id.imageView_recyclerView_coverArticle)
         init {
             itemView.setOnClickListener(this)
         }
