@@ -45,7 +45,7 @@ class ProductGridAdapter : BaseAdapter {
             .into(productView.imageView_gridView_icon)
         productView.textView_gridView_name.text = product.productName
         productView.setOnClickListener {
-            val i = Intent(Intent.ACTION_VIEW, Uri.parse(product.link.toString()))
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse(product.link .toString()))
             context!!.startActivity(i)
         }
 
